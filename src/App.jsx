@@ -1,10 +1,11 @@
 import React from 'react'
+import FilmRoutes from './routes'
 
 const App = () => {
   return (
-    <div className='text-red-500'>
-       helloo
-    </div>
+    <>
+       <FilmRoutes/>
+    </>
   )
 }
 
