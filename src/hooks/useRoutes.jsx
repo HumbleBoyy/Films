@@ -1,3 +1,4 @@
+import React from "react";
 import { NowPlaying, Popular, TopRated, Upcoming } from "../pages";
 import { PATH } from "./usePath";
 
