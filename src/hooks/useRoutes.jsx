@@ -25,3 +25,26 @@ export const pageRoutes = [
         element:<Upcoming/>
     },
 ]
+
+export const navbarList = [
+    {
+        id:1,
+        path:PATH.home,
+        title:"Now Playing"
+    },
+    {
+        id:2,
+        path:PATH.popular,
+        title:"Popular"
+    },
+    {
+        id:3,
+        path:PATH.topRated,
+        title:"Top Rated"
+    },
+    {
+        id:4,
+        path:PATH.upcoming,
+        title:"Upcoming"
+    }
+]
