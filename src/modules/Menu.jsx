@@ -10,6 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import { navbarList } from '../hooks/useRoutes';
 import { NavLink } from 'react-router-dom';
+import getContext from '../hooks/getContext';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -54,11 +55,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Menu() {
+    const {openDrawer, setOpenDrawer} = getContext()
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
+            onClick={()=> setOpenDrawer(!openDrawer)}
             size="large"
             edge="start"
             color="inherit"
