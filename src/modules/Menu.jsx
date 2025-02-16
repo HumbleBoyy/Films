@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import { navbarList } from '../hooks/useRoutes';
+import { NavLink } from 'react-router-dom';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -73,6 +75,9 @@ export default function Menu() {
           >
             Movies
           </Typography>
+          <nav className='flex items-center gap-5 mr-2'>
+          {navbarList.map(item => <NavLink key={item.id} to={item.path} className={"pb-1 border-b-2 border-transparent"}>{item.title}</NavLink>)}
+          </nav>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
