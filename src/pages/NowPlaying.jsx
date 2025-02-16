@@ -4,10 +4,11 @@ import { API_KEY } from '../hooks/getEnv'
 
 const NowPlaying = () => {
   const nowPlaying = getRequest(`/now_playing?language=en-US&page=1&key=${API_KEY}`)
-  console.log(nowPlaying)
   return (
     <div>
-      NowPlaying
+      {nowPlaying?.results?.map(item => (
+        <h2 key={item.id}>{item.original_title}</h2>
+      ))}
     </div>
   )
 }

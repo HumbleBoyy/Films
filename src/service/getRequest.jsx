@@ -4,7 +4,7 @@ import { instance } from "../hooks/instance"
 
 
 export const getRequest = (API) => {
-    const [data, setData] = useState([])
+    const [data, setData] = useState({})
 
     useEffect(()=> {
         instance().get(API).then(res => setData(res.data))
