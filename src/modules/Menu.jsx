@@ -12,6 +12,7 @@ import { navbarList } from '../hooks/useRoutes';
 import { NavLink } from 'react-router-dom';
 import getContext from '../hooks/getContext';
 import CustomDrawer from './Drawer';
+import { Autocomplete, TextField } from '@mui/material';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -55,6 +56,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+
+const top100Films = [
+  { label: 'The Shawshank Redemption', year: 1994 },
+  { label: 'The Godfather', year: 1972 },
+  { label: 'The Godfather: Part II', year: 1974 },
+  { label: 'The Dark Knight', year: 2008 },
+  { label: '12 Angry Men', year: 1957 },
+  { label: "Schindler's List", year: 1993 },
+  { label: 'Pulp Fiction', year: 1994 },]
 export default function Menu() {
     const {openDrawer, setOpenDrawer} = getContext()
   return (
@@ -82,16 +92,15 @@ export default function Menu() {
           </Typography>
           <nav className='flex items-center gap-5 mr-2'>
           {navbarList.map(item => <NavLink key={item.id} to={item.path} className={"pb-1 border-b-2 border-transparent"}>{item.title}</NavLink>)}
-          </nav>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
+         
+          <Autocomplete
+          className='!border-white border-2 outline-none rounded-md'
+            disablePortal
+            options={top100Films}
+            sx={{ width: 300 }}
+            renderInput={(params) => <TextField {...params} label="Movies" className='!text-white'/>}
+          />
+           </nav>
         </Toolbar>
       </AppBar>
     </Box>
