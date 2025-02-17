@@ -28,7 +28,7 @@ export default function MovieCard({URL}) {
            alt={item.original_title}
          />
          <CardContent>
-         <h2 className='text-[20px] font-bold'>
+         <h2  className='text-[20px] font-bold line-clamp-1'>
              {item.original_title}
            </h2>
            <Typography className='line-clamp-2' variant="body2" sx={{ color: 'text.secondary' }}>
