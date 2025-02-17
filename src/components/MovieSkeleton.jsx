@@ -10,8 +10,7 @@ function Media(props) {
   const { loading = false } = props;
 
   return (
-    <Card className='min-w-[345px]' sx={{ maxWidth: 345, m: 2 }}>
-     
+    <Card className='w-[345px]' sx={{ maxWidth: 345, m: 2 }}>
       {loading ? (
         <Skeleton sx={{ height: 450 }} animation="wave" variant="rectangular" />
       ) : (
