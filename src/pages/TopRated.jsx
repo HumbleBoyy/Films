@@ -1,10 +1,9 @@
 import React from 'react'
+import MovieCard from '../components/MovieCard'
 
 const TopRated = () => {
   return (
-    <div>
-      TopRated
-    </div>
+    <MovieCard URL={"/top_rated"}/>
   )
 }
 

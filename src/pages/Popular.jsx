@@ -1,10 +1,9 @@
 import React from 'react'
+import MovieCard from '../components/MovieCard'
 
 const Popular = () => {
   return (
-    <div>
-      Popular
-    </div>
+    <MovieCard URL={'/popular'}/>
   )
 }
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { getRequest } from '../service/getRequest'
 import { API_KEY, IMG_URL } from '../hooks/getEnv'
 
@@ -14,7 +14,7 @@ import { BookmarkAdd } from '@mui/icons-material';
 
 
 export default function MovieCard({URL}) {
-
+  const [showImage, setShowImage] = useState(false)
   const data = getRequest(`${URL}?language=en-US&page=1&key=${API_KEY}`)
   console.log(data)
   return (
@@ -22,13 +22,15 @@ export default function MovieCard({URL}) {
        {data?.results?.map(item => (
          <Card sx={{ maxWidth: 345 }} key={item.id}>
          <CardMedia
+           onMouseMove={()=> setShowImage(true)}
+           onMouseLeave={()=> setShowImage(false)}
            component="img"
-           className='object-cover  w-[100%]'
-           image={`${IMG_URL}/${item.poster_path}`}
+           className='h-[450px] duration-500 cursor-pointer'
+           image={`${IMG_URL}/${showImage ?  item.backdrop_path : item.poster_path}`}
            alt={item.original_title}
          />
          <CardContent>
-         <h2  className='text-[20px] font-bold line-clamp-1'>
+          <h2 className='text-[20px] font-bold line-clamp-1'>
              {item.original_title}
            </h2>
            <Typography className='line-clamp-2' variant="body2" sx={{ color: 'text.secondary' }}>
