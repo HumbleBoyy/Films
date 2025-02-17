@@ -1,72 +1,35 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
 import { navbarList } from '../hooks/useRoutes';
 import { NavLink } from 'react-router-dom';
 import getContext from '../hooks/getContext';
 import CustomDrawer from './Drawer';
 import { Autocomplete, TextField } from '@mui/material';
-
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(1),
-    width: 'auto',
-  },
-}));
-
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  width: '100%',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    [theme.breakpoints.up('sm')]: {
-      width: '12ch',
-      '&:focus': {
-        width: '20ch',
-      },
-    },
-  },
-}));
+import { instanceV2 } from '../hooks/instance';
+import { API_KEY } from '../hooks/getEnv';
 
 
-const top100Films = [
-  { label: 'The Shawshank Redemption', year: 1994 },
-  { label: 'The Godfather', year: 1972 },
-  { label: 'The Godfather: Part II', year: 1974 },
-  { label: 'The Dark Knight', year: 2008 },
-  { label: '12 Angry Men', year: 1957 },
-  { label: "Schindler's List", year: 1993 },
-  { label: 'Pulp Fiction', year: 1994 },]
 export default function Menu() {
     const {openDrawer, setOpenDrawer} = getContext()
+    const [filmData, setFilmData] = React.useState([])
+
+    const handleSearch = (e)=> {
+      instanceV2().get(`/search/movie?query=${e.target.value}&include_adult=false&api_key=${API_KEY}`).then(res => {
+        setFilmData(res.data.results.map(item => {
+          const data = {
+            label:item.original_title,
+            id:item.id
+          }
+          return data
+        }))
+      })
+    }
+
   return (
      <>
       <Box sx={{ flexGrow: 1 }}>
@@ -94,17 +57,18 @@ export default function Menu() {
           {navbarList.map(item => <NavLink key={item.id} to={item.path} className={"pb-1 border-b-2 border-transparent"}>{item.title}</NavLink>)}
          
           <Autocomplete
-          className='!border-white border-2 outline-none rounded-md'
+            className='!border-white border-2 outline-none rounded-md !text-white'
             disablePortal
-            options={top100Films}
+            onInput={(e)=> handleSearch(e)}
+            size='small'
+            options={filmData}
             sx={{ width: 300 }}
-            renderInput={(params) => <TextField {...params} label="Movies" className='!text-white'/>}
+            renderInput={(params) => <TextField {...params} placeholder='Search...' className='!text-white'/>}
           />
            </nav>
         </Toolbar>
       </AppBar>
     </Box>
-
     <CustomDrawer/>
      </>
   );

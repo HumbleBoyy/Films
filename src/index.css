@@ -3,10 +3,9 @@
 .active {
     border-color: white;
 }
-.css-19qnlrw-MuiFormLabel-root-MuiInputLabel-root {
+.css-1kfabtt-MuiFormLabel-root-MuiInputLabel-root {
     color: white !important;
 }
-
 .css-1umw9bq-MuiSvgIcon-root {
     color: aliceblue;
 }
@@ -23,5 +22,9 @@
 }
 
 .css-113d811-MuiFormLabel-root-MuiInputLabel-root {
+    color: white !important;
+}
+
+.css-13meb6w-MuiInputBase-input-MuiOutlinedInput-input {
     color: white !important;
 }
