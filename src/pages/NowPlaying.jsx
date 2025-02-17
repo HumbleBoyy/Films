@@ -1,10 +1,10 @@
 import React from 'react'
-import MovieCard from '../components/MovieCard'
+import MoviePage from '../components/MoviePage'
 
 const NowPlaying = () => {
  
   return (
-    <MovieCard  URL={`/now_playing`}/>
+    <MoviePage  URL={`/now_playing`}/>
   )
 }
 

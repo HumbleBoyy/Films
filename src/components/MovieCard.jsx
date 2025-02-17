@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { getRequest } from '../service/getRequest'
-import { API_KEY, IMG_URL } from '../hooks/getEnv'
+import { IMG_URL } from '../hooks/getEnv'
 
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
@@ -13,14 +12,11 @@ import { BookmarkAdd } from '@mui/icons-material';
 
 
 
-export default function MovieCard({URL}) {
+export default function MovieCard({item}) {
   const [showImage, setShowImage] = useState(false)
-  const data = getRequest(`${URL}?language=en-US&page=1&key=${API_KEY}`)
-  console.log(data)
+  
   return (
-    <div className='flex flex-wrap objec-cover justify-center items-center gap-2 mt-5'>
-       {data?.results?.map(item => (
-         <Card sx={{ maxWidth: 345 }} key={item.id}>
+         <Card sx={{ maxWidth: 345 }}>
          <CardMedia
            onMouseMove={()=> setShowImage(true)}
            onMouseLeave={()=> setShowImage(false)}
@@ -46,8 +42,7 @@ export default function MovieCard({URL}) {
            </IconButton>
          </CardActions>
        </Card>
-       ))}
-    </div>
+ 
   );
 }
 

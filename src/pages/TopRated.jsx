@@ -1,9 +1,9 @@
 import React from 'react'
-import MovieCard from '../components/MovieCard'
+import MoviePage from '../components/MoviePage'
 
 const TopRated = () => {
   return (
-    <MovieCard URL={"/top_rated"}/>
+    <MoviePage URL={"/top_rated"}/>
   )
 }
 

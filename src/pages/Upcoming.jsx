@@ -1,9 +1,10 @@
 import React from 'react'
 import MovieCard from '../components/MovieCard'
+import MoviePage from '../components/MoviePage'
 
 const Upcoming = () => {
   return (
-    <MovieCard URL={"/upcoming"}/>
+    <MoviePage URL={"/upcoming"}/>
   )
 }
 
